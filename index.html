@@ -2,6 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="الباحث العلمي: منصة بحث موحّدة في OpenAlex وCrossref وSemantic Scholar وDOAJ مع توثيق المراجع وربط بالمجلات والمستودعات الليبية.">
+<meta name="theme-color" content="#082c50">
+<meta property="og:title" content="الباحث العلمي"><meta property="og:description" content="بحث علمي موحّد وتوثيق مراجع بأنماط متعددة ومصادر ليبية."><meta property="og:type" content="website"><meta property="og:locale" content="ar_AR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23082c50'/%3E%3Ccircle cx='28' cy='28' r='12' fill='none' stroke='%23fff' stroke-width='5'/%3E%3Cpath d='M37 37l14 14' stroke='%23fff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>الباحث العلمي</title>
 <style>
 :root{--navy:#082c50;--blue:#0967e8;--green:#07985b;--ink:#142b47;--muted:#64748b;--line:#dce5ef;--paper:#f4f7fb}
@@ -73,11 +77,77 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 #citationModal{z-index:1300}
 .copy-status{font-size:13px;color:#166534;margin-top:8px}
 @media(max-width:650px){body{font-size:14px}.top-actions{gap:6px}.top-actions .icon-btn{width:36px;height:36px}.floating-nav button{width:38px;height:38px}.result h3{font-size:16px}}
-</style></head><body>
+.filters .check{align-self:center}html[dir=ltr] .hero-inner{text-align:left}html[dir=ltr] .modal-close{left:auto;right:14px}html[dir=ltr] .brand small{text-align:left}
+
+/* ---- contrast boost (light) ---- */
+:root{--ink:#0b1b30;--muted:#334155}
+::placeholder{color:#475569;opacity:1}
+.meta,.summary,.search-help,.stat span,.check,.resource-link small,.login-card p,.citation-box p,.result p,#academicSources p,.loading-state,.pagination span,.results-head label{color:#2b3a4f!important}
+.hero .search-help{color:#eaf2fb!important}.hero .check{color:#fff!important}
+.copy-status{color:#14532d!important;font-weight:700}
+.credit{color:#000!important;font-weight:800;font-size:14px}
+.top-actions #themeBtn{font-size:20px;line-height:1}
+/* ---- dark theme ---- */
+html[data-theme=dark]{color-scheme:dark;--paper:#0b1220;--ink:#f1f5f9;--muted:#cbd5e1;--line:#334155;--navy:#06101e;--blue:#5aa5f5}
+html[data-theme=dark] body{background:#0b1220;color:#f1f5f9}
+html[data-theme=dark] :is(.panel,.result,.results-head,.citation-box,.login-card,#libyaPanel,#academicSources,.resource-link,.searchrow){background:#121c2e!important;color:#f1f5f9;border-color:#334155!important}
+html[data-theme=dark] .stat{background:#172338;border-color:#334155}
+html[data-theme=dark] :is(.meta,.summary,.search-help,.stat span,.check,.resource-link small,.login-card p,.citation-box p,.result p,#academicSources p,.loading-state,.pagination span,.results-head label,.credit){color:#d5deea!important}
+html[data-theme=dark] .credit{color:#fff!important}
+html[data-theme=dark] .hero .search-help{color:#eaf2fb!important}
+html[data-theme=dark] :is(.result h3,.login-card h2,.citation-box h2,#academicSources h2,#academicSources h3,#libyaPanel summary){color:#9ccbff!important}
+html[data-theme=dark] :is(input,select,textarea){background:#0f1a2c!important;color:#f1f5f9!important;border-color:#475569!important}
+html[data-theme=dark] .searchrow input{background:transparent!important;border:0!important}
+html[data-theme=dark] ::placeholder{color:#94a3b8}
+html[data-theme=dark] :is(.result button,.citation-controls button:not(.go)){background:#1b2a42!important;color:#e2e8f0!important;border-color:#475569!important}
+html[data-theme=dark] :is(.panel .plain-btn,.pagination .plain-btn){color:#e2e8f0!important;border-color:#64748b!important}
+html[data-theme=dark] .result span[style*="e8f2ff"]{background:#1e3a5f!important;color:#cfe5ff!important}
+html[data-theme=dark] .result a:not(.primary):not(.go),html[data-theme=dark] #libyaPanel a{color:#8dc1ff}
+html[data-theme=dark] .resource-link{color:#e2e8f0!important}
+html[data-theme=dark] .notice{background:#10213a;color:#e2e8f0;border-color:#2a4a78}
+html[data-theme=dark] .loading-state{border-color:#475569!important}
+html[data-theme=dark] .login-features span{background:#1e3a5f;color:#cfe5ff}
+html[data-theme=dark] .copy-status{color:#86efac!important}
+html[data-theme=dark] .modal-close{color:#cbd5e1}
+html[data-theme=dark] .hero .check,html[data-theme=dark] .hero .query-mode-label{color:#fff!important}
+
+/* ---- pagination ---- */
+.pagination{gap:10px;padding:22px 0}
+.pg-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px solid #0b4fb3;background:#fff;color:#0b3a6b;font-weight:800;box-shadow:0 2px 8px rgba(8,44,80,.12)}
+.pg-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.pg-next{background:linear-gradient(135deg,#0967e8,#0b4fb3);color:#fff}
+.pagination .pg-btn:hover:not(:disabled){background:linear-gradient(135deg,#0b7bff,#0846a8);color:#fff;border-color:#0846a8;box-shadow:0 10px 22px rgba(9,103,232,.38)}
+.pg-prev:hover:not(:disabled) svg{transform:translateX(3px)}.pg-next:hover:not(:disabled) svg{transform:translateX(-3px)}
+html[dir=ltr] .pg-btn svg{transform:scaleX(-1)}html[dir=ltr] .pg-prev:hover:not(:disabled) svg{transform:scaleX(-1) translateX(3px)}html[dir=ltr] .pg-next:hover:not(:disabled) svg{transform:scaleX(-1) translateX(-3px)}
+.pagination .pg-btn:disabled{opacity:1;background:#e3eaf3;color:#4a5b70;border:1.5px dashed #8fa3bb;box-shadow:none;cursor:not-allowed;transform:none}
+.pg-nums{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center}
+.pg-num{min-width:42px;height:42px;border-radius:50%;border:1.5px solid #8fa3bb;background:#fff;color:#0b3a6b;font-weight:800}
+.pg-num.on{background:#0b4fb3;color:#fff;border-color:#0b4fb3;box-shadow:0 6px 16px rgba(9,103,232,.4)}
+.pg-dots{color:#334155;font-weight:800}.pg-info{order:9;flex-basis:100%;text-align:center;font-size:13px}
+html[data-theme=dark] .pg-btn:not(.pg-next),html[data-theme=dark] .pg-num:not(.on){background:#1b2a42;color:#e2e8f0;border-color:#5a7aa3}
+html[data-theme=dark] .pagination .pg-btn:disabled{background:#141e2e;color:#a3b2c6;border-color:#4b5d75}
+html[data-theme=dark] .pg-dots{color:#cbd5e1}
+/* ---- floating arrows ---- */
+.floating-nav .fl{position:relative;width:50px;height:50px;padding:0;border:0;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#38bdf8 calc(var(--p,0)*1%),rgba(120,160,200,.35) 0);box-shadow:0 8px 22px rgba(8,44,80,.38);transition:opacity .25s,transform .2s,box-shadow .2s}
+.floating-nav .fl::before{content:"";position:absolute;inset:4px;border-radius:50%;background:linear-gradient(145deg,#0f5fb8,#06213f)}
+.floating-nav .fl svg{position:relative;width:22px;height:22px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.floating-nav .fl:hover{transform:translateY(-3px) scale(1.08);box-shadow:0 14px 30px rgba(9,103,232,.55);background:conic-gradient(#38bdf8 calc(var(--p,0)*1%),rgba(120,160,200,.35) 0)}
+.floating-nav .fl.up:hover svg{transform:translateY(-3px)}.floating-nav .fl.dn:hover svg{transform:translateY(3px)}
+@media(max-width:720px){.floating-nav .fl{width:44px;height:44px}}
+/* ---- stat tiles ---- */
+.stat{cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s,border-color .15s;user-select:none}
+.stat:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(8,44,80,.16);border-color:#0b4fb3}
+.stat:focus-visible{outline:3px solid #79b7f0;outline-offset:2px}
+.stat.on{background:linear-gradient(135deg,#0b6bf0,#0846a8);border-color:#0846a8}
+.stat.on strong,.stat.on span,html[data-theme=dark] .stat.on span{color:#fff!important}
+.stat.zero{opacity:.55;cursor:default}.stat.zero:hover{transform:none;box-shadow:none}
+.result button{border:1.5px solid #5b7da3;font-weight:700}
+</style>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("albahith_theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light")}catch(e){}</script></head><body>
 <header class="topbar">
 <div class="brand">الباحث العلمي<small>مصادر موثوقة، بحث أعمق، ومعرفة أوسع</small></div>
-<nav><a href="#home" onclick="showHome()">الرئيسة</a><a href="#results" onclick="setTopCategory('')">المصادر</a><a href="#results" onclick="setTopCategory('مقال علمي')">المجلات العلمية</a><a href="#results" onclick="setTopCategory('كتاب')">الكتب</a><a href="#results" onclick="setTopCategory('ورقة بحثية')">الأوراق البحثية</a><a href="#results" onclick="setTopCategory('رسالة جامعية')">الرسائل الجامعية</a><a href="#academicSources">قواعد البيانات</a><a href="#about">حول المنصة</a></nav>
-<div class="top-actions"><button class="plain-btn icon-btn" title="الرئيسة" aria-label="الرئيسة" onclick="showHome()">⌂</button><button class="plain-btn icon-btn" title="نتائج البحث" aria-label="نتائج البحث" onclick="document.getElementById('results').scrollIntoView({behavior:'smooth'})">⌕</button><button class="plain-btn" onclick="openLogin()">تسجيل الدخول</button><button class="plain-btn" onclick="message('اللغة','الواجهة الحالية باللغة العربية. يمكن إضافة لغات أخرى في إصدار لاحق.')">العربية ▾</button></div>
+<nav><a href="#home" onclick="showHome()">الرئيسة</a><a href="#results" onclick="setTopCategory('')">المصادر</a><a href="#results" onclick="setTopCategory('مقال علمي')">المجلات العلمية</a><a href="#results" onclick="setTopCategory('كتاب')">الكتب</a><a href="#results" onclick="setTopCategory('ورقة بحثية')">الأوراق البحثية</a><a href="#results" onclick="setTopCategory('رسالة جامعية')">الرسائل الجامعية</a><a href="#academicSources">قواعد البيانات</a><a href="#" onclick="openLib();return false">مكتبتي (<span id="libN">0</span>)</a><a href="#about" onclick="openAbout();return false">حول المنصة</a></nav>
+<div class="top-actions"><button class="plain-btn icon-btn" title="الرئيسة" aria-label="الرئيسة" onclick="showHome()">⌂</button><button class="plain-btn icon-btn" title="نتائج البحث" aria-label="نتائج البحث" onclick="document.getElementById('results').scrollIntoView({behavior:'smooth'})">⌕</button><button class="plain-btn icon-btn" id="themeBtn" data-notr type="button" onclick="toggleTheme()">☾</button><button class="plain-btn" onclick="openLogin()">تسجيل الدخول</button><button class="plain-btn" id="langBtn" data-notr onclick="toggleLang()">English</button></div>
 </header>
 <section class="hero" id="home"><div class="hero-inner"><h1>اكتشف المصادر العلمية الموثوقة</h1><p>منصة بحثية متخصصة للكتب والمراجع والمقالات والأوراق البحثية من مختلف التخصصات</p>
 <form id="searchForm"><div class="searchrow"><label class="query-mode-label" for="queryMode">نمط البحث
@@ -86,7 +156,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 <option value="phrase">جملة محددة</option>
 <option value="any">أي كلمة من العبارة</option>
 </select></label><input id="query" type="search" placeholder="اكتب الكلمات المفتاحية: عنوان، مؤلف، موضوع أو كلمة من الملخص..." aria-label="عبارة البحث"><button class="primary" type="submit">بحث في المصادر</button></div>
-<div class="filters"><select id="subject"><option value="__all__">الكل</option><option value="">جميع التخصصات</option><option>العلوم الشرعية</option><option>التربية والتعليم</option><option>العلوم الطبيعية</option><option>العلوم الطبية</option><option>العلوم الإنسانية</option><option>تقنية المعلومات</option></select><select id="year"><option value="__all__">الكل</option><option value="">جميع السنوات</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option></select><select id="type"><option value="__all__">الكل</option><option value="">جميع أنواع المصادر</option><option>كتاب</option><option>مقال علمي</option><option>ورقة بحثية</option><option>رسالة جامعية</option></select></div></form><p id="queryModeHelp" class="search-help">الجملة المحددة: يبحث عن العبارة متصلة قدر الإمكان. مجموعات كلمات: يشترط وجود جميع الكلمات في بيانات النتيجة، وليس بالضرورة متجاورة. أي كلمة من العبارة: يكفي ظهور كلمة واحدة.</p></div></section>
+<div class="filters"><select id="subject"><option value="__all__">الكل</option><option value="">جميع التخصصات</option><option>العلوم الشرعية</option><option>التربية والتعليم</option><option>العلوم الطبيعية</option><option>العلوم الطبية</option><option>العلوم الإنسانية</option><option>تقنية المعلومات</option></select><select id="year"><option value="__all__">الكل</option><option value="">جميع السنوات</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option></select><select id="type"><option value="__all__">الكل</option><option value="">جميع أنواع المصادر</option><option>كتاب</option><option>مقال علمي</option><option>ورقة بحثية</option><option>رسالة جامعية</option></select><select id="lang" aria-label="لغة المصدر"><option value="">كل اللغات</option><option value="ar">العربية</option><option value="en">الإنجليزية</option></select><label class="check" style="color:#fff;margin:0 6px"><input type="checkbox" id="libyaOnly"> مصادر ليبية فقط</label></div></form><p id="queryModeHelp" class="search-help">الجملة المحددة: يبحث عن العبارة متصلة قدر الإمكان. مجموعات كلمات: يعتمد على ترتيب الصلة في الفهارس العلمية دون استبعاد محلي. أي كلمة من العبارة: يكفي ظهور كلمة واحدة.</p></div></section>
 <section class="stats" id="searchStats">
 <div class="stat"><strong id="statBooks">0</strong><span>الكتب ضمن النتائج</span></div>
 <div class="stat"><strong id="statArticles">0</strong><span>المقالات العلمية</span></div>
@@ -96,11 +166,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 <div class="stat"><strong id="statOA">0</strong><span>متاح الوصول المفتوح</span></div>
 </section>
 <main class="layout" id="results"><aside class="panel"><h3>تصفية نتائج البحث</h3><div class="filter-group"><h4>نوع المصدر</h4><button type="button" class="plain-btn" style="color:#123;border-color:#9eb7d0;margin-bottom:8px" onclick="selectAllKinds()">الكل</button><label class="check"><input type="checkbox" class="kind-filter" value="كتاب"> كتاب</label><label class="check"><input type="checkbox" class="kind-filter" value="مقال علمي"> مقال علمي</label><label class="check"><input type="checkbox" class="kind-filter" value="ورقة بحثية"> ورقة بحثية</label><label class="check"><input type="checkbox" class="kind-filter" value="رسالة جامعية"> رسالة جامعية</label></div>
-<div class="filter-group"><h4>التخصص</h4><button type="button" class="plain-btn" style="color:#123;border-color:#9eb7d0;margin-bottom:8px" onclick="selectAllSubjects()">الكل</button><input class="small-input" id="subjectText" placeholder="اكتب اسم التخصص"><label class="check"><input type="checkbox"> العلوم الشرعية</label><label class="check"><input type="checkbox"> العلوم الطبيعية</label><label class="check"><input type="checkbox"> العلوم الإنسانية</label><label class="check"><input type="checkbox"> العلوم التربوية</label></div><div class="filter-group"><h4>إتاحة النص الكامل</h4><button type="button" class="plain-btn" style="color:#123;border-color:#9eb7d0;margin-bottom:8px" onclick="selectAllAccess()">الكل</button><label class="check"><input type="checkbox"> متاح مجانًا</label><label class="check"><input type="checkbox"> يتطلب اشتراكًا</label></div><button class="primary" style="width:100%" onclick="resetFilters()">مسح عوامل التصفية</button></aside>
-<section><div class="results-head"><strong id="resultCount">نتائج البحث (0)</strong><label>ترتيب النتائج: <select id="sort"><option>الأكثر صلة</option><option>الأحدث نشرًا</option><option>الأقدم نشرًا</option></select></label></div><div id="resultList"><div class="loading-state"><strong>ابدأ البحث العلمي</strong><br>أدخل عنوانًا أو موضوعًا أو اسم مؤلف، وستظهر النتائج الفعلية من الفهرس العلمي.</div></div><div id="notice" class="notice" role="status"></div>
-<div class="pagination" id="pagination" aria-label="التنقل بين صفحات النتائج"><button type="button" id="prevPage" class="plain-btn" onclick="changePage(-1)" disabled>السابقة</button><span id="pageInfo">الصفحة 0 من 0</span><button type="button" id="nextPage" class="primary" onclick="changePage(1)" disabled>التالية</button></div>
+<div class="filter-group"><h4>التخصص</h4><button type="button" class="plain-btn" style="color:#123;border-color:#9eb7d0;margin-bottom:8px" onclick="selectAllSubjects()">الكل</button><input class="small-input" id="subjectText" placeholder="اكتب اسم التخصص"><label class="check"><input type="checkbox"> العلوم الشرعية</label><label class="check"><input type="checkbox"> العلوم الطبيعية</label><label class="check"><input type="checkbox"> العلوم الإنسانية</label><label class="check"><input type="checkbox"> العلوم التربوية</label><label class="check"><input type="checkbox"> العلوم الطبية</label><label class="check"><input type="checkbox"> تقنية المعلومات</label></div><div class="filter-group"><h4>إتاحة النص الكامل</h4><button type="button" class="plain-btn" style="color:#123;border-color:#9eb7d0;margin-bottom:8px" onclick="selectAllAccess()">الكل</button><label class="check"><input type="checkbox"> متاح مجانًا</label><label class="check"><input type="checkbox"> غير مفتوح الوصول (قد يتطلب اشتراكًا)</label></div><button class="primary" style="width:100%" onclick="resetFilters()">مسح عوامل التصفية</button></aside>
+<section><div class="results-head"><strong id="resultCount">نتائج البحث (0)</strong><label>ترتيب النتائج: <select id="sort"><option>الأكثر صلة</option><option>الأحدث نشرًا</option><option>الأقدم نشرًا</option></select></label></div><details id="libyaPanel" open style="display:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 17px;margin-bottom:10px"></details><div id="resultList"><div class="loading-state"><strong>ابدأ البحث العلمي</strong><br>أدخل عنوانًا أو موضوعًا أو اسم مؤلف، وستظهر النتائج الفعلية من الفهرس العلمي.</div></div><div id="notice" class="notice" role="status"></div>
+<div class="pagination" id="pagination" aria-label="التنقل بين صفحات النتائج"><button type="button" id="prevPage" class="pg-btn pg-prev" onclick="changePage(-1)" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg><span>السابقة</span></button><span id="pageNums" class="pg-nums"></span><span id="pageInfo" class="pg-info">الصفحة 0 من 0</span><button type="button" id="nextPage" class="pg-btn pg-next" onclick="changePage(1)" disabled><span>التالية</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button></div>
 </section></main>
-<div class="floating-nav" aria-label="التنقل في الصفحة"><button type="button" title="الانتقال إلى أعلى الصفحة" aria-label="أعلى الصفحة" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><button type="button" title="الانتقال إلى أسفل الصفحة" aria-label="أسفل الصفحة" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">↓</button></div>
+<div class="floating-nav" aria-label="التنقل في الصفحة"><button type="button" class="fl up" title="الانتقال إلى أعلى الصفحة" aria-label="أعلى الصفحة" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button><button type="button" class="fl dn" title="الانتقال إلى أسفل الصفحة" aria-label="أسفل الصفحة" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
 <div class="modal-backdrop" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle"><div class="login-card"><button type="button" class="modal-close" aria-label="إغلاق" onclick="closeLogin()">×</button><h2 id="loginTitle">تسجيل دخول الباحث</h2><p>يُستخدم الحساب في إصدار متصل بخادم لإدارة الملف الشخصي، وحفظ المراجع وعمليات البحث، وإنشاء مكتبة شخصية. هذه النسخة لا تتضمن بعد نظام حسابات آمنًا؛ لذلك لن نطلب كلمة مرور هنا.</p><div class="login-features"><span>حفظ المراجع</span><span>سجل البحث</span><span>قائمة المفضلة</span><span>إدارة الاقتباسات</span></div><button type="button" class="primary" onclick="closeLogin();message('تسجيل الدخول','لم يُفعّل الحساب بعد. يلزم ربط المنصة بخادم وقاعدة بيانات ونظام مصادقة آمن قبل استخدام حسابات حقيقية.')">فهمت</button></div></div>
 
 <section class="resource-directory" id="academicSources" style="margin:24px 3%;padding:22px;background:#fff;border:1px solid #dce5ef;border-radius:16px;box-shadow:0 8px 24px rgba(8,44,80,.06)">
@@ -120,22 +190,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
   <a class="resource-link" href="https://eric.ed.gov/" target="_blank" rel="noopener">ERIC <small>التربية والتعليم</small></a>
   <a class="resource-link" href="https://arxiv.org/" target="_blank" rel="noopener">arXiv <small>الرياضيات والفيزياء والحوسبة</small></a>
  </div>
- <h3 style="margin:24px 0 12px;color:#082c50">مصادر ليبية وجامعية</h3>
- <div class="resource-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
-  <a class="resource-link" href="https://dolj.ly/" target="_blank" rel="noopener">دليل المجلات الليبية الإلكتروني <small>دليل وطني للمجلات وتصنيفاتها</small></a>
-  <a class="resource-link" href="https://www.lsjp.epc.ly/ar/Journal" target="_blank" rel="noopener">المنصة الليبية للمجلات العلمية المحكمة <small>الهيئة الليبية للبحث العلمي</small></a>
-  <a class="resource-link" href="https://jisprs.ly/" target="_blank" rel="noopener">مكتبة الهيئة الليبية للبحث العلمي <small>الرسائل والدراسات السابقة والمستودعات</small></a>
-  <a class="resource-link" href="https://repository.uob.edu.ly/" target="_blank" rel="noopener">المستودع الرقمي لجامعة بنغازي <small>أبحاث ورسائل ومجلات الجامعة</small></a>
-  <a class="resource-link" href="https://journals.misuratau.edu.ly/" target="_blank" rel="noopener">مجلات جامعة مصراتة <small>مجلات في تخصصات علمية متعددة</small></a>
-  <a class="resource-link" href="https://www.su.edu.ly/en/index.php/research/scientific-journals" target="_blank" rel="noopener">المجلات العلمية بجامعة سرت <small>قائمة المجلات التابعة للجامعة</small></a>
-  <a class="resource-link" href="https://journals.ly/platform/" target="_blank" rel="noopener">المنصة الليبية للمجلات المحكمة <small>مجلات جامعية ليبية</small></a>
-  <a class="resource-link" href="https://jsr.africaun.edu.ly/index.php/jsr" target="_blank" rel="noopener">مجلة البحوث العلمية – جامعة أفريقيا <small>بحوث إنسانية وتطبيقية</small></a>
-  <a class="resource-link" href="https://omu.edu.ly/journals/index.php/mjsc/index" target="_blank" rel="noopener">مجلة المختار للعلوم <small>جامعة عمر المختار</small></a>
-  <a class="resource-link" href="https://ajbas.academy.edu.ly/ar/j" target="_blank" rel="noopener">مجلة الأكاديمية للعلوم الأساسية والتطبيقية <small>الأكاديمية الليبية للدراسات العليا</small></a>
-  <a class="resource-link" href="https://d.journal.tu.edu.ly/" target="_blank" rel="noopener">مجلة دلالات <small>جامعة طبرق</small></a>
-  <a class="resource-link" href="https://bwu.edu.ly/journal-of-baniwaleed-university/" target="_blank" rel="noopener">مجلة جامعة بني وليد <small>العلوم الإنسانية والتطبيقية</small></a>
- </div>
-</section>
+ </section>
 <style>
 .resource-link{display:block;padding:13px 15px;border:1px solid #dce5ef;border-radius:11px;text-decoration:none;color:#123b61;font-weight:700;background:#f8fbff;transition:.15s}
 .resource-link:hover{border-color:#0967e8;background:#eef6ff;transform:translateY(-1px)}
@@ -144,6 +199,25 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 </style>
 
 <footer class="credit" id="about">فكرة وتصميم: د. حسن الشيباني</footer>
+<div id="citationModal" class="citation-modal" role="dialog" aria-modal="true" aria-labelledby="citationTitle">
+ <div class="citation-box">
+  <h2 id="citationTitle">أنظمة التوثيق والاقتباس</h2>
+  <p>اختر النمط الذي تطلبه المجلة أو المؤتمر. النص الناتج مسودة مبنية على البيانات الظاهرة، ويجب استكمال البيانات الناقصة ومراجعة دليل الجهة الناشرة قبل الإرسال.</p>
+  <label for="citationStyle">نظام التوثيق</label>
+  <select id="citationStyle">
+   <option value="apa">APA 7 — الجمعية الأمريكية لعلم النفس</option><option value="mla">MLA 9 — جمعية اللغة الحديثة</option>
+   <option value="chicagoNB">Chicago 18 — الحواشي وقائمة المراجع</option><option value="chicagoAD">Chicago 18 — المؤلف والتاريخ</option>
+   <option value="ieee">IEEE — الترقيم الهندسي والتقني</option><option value="vancouver">Vancouver — الترقيم الطبي</option>
+   <option value="harvard">Harvard — المؤلف والتاريخ</option><option value="acs">ACS — الكيمياء</option><option value="bibtex">BibTeX — لإدارة المراجع</option><option value="ris">RIS — Zotero / EndNote / Mendeley</option>
+  </select>
+  <label for="citationOutput">مسودة التوثيق</label><textarea id="citationOutput" spellcheck="false"></textarea><div id="citationCopyStatus" class="copy-status" role="status" aria-live="polite"></div>
+  <div class="citation-controls"><button class="go" id="copyCitationBtn" type="button">نسخ الاقتباس</button><button id="downloadCitationBtn" type="button">تنزيل TXT</button><button type="button" onclick="closeCitation()">إغلاق</button></div>
+ </div>
+</div>
+
+</body></html>
+<div class="modal-backdrop" id="libModal" role="dialog" aria-modal="true" aria-labelledby="libTitle"><div class="login-card" style="max-width:720px;max-height:88vh;overflow:auto"><button type="button" class="modal-close" aria-label="إغلاق" onclick="document.getElementById('libModal').classList.remove('open')">×</button><h2 id="libTitle">مكتبتي</h2><p>المراجع المحفوظة تبقى في هذا المتصفح وهذا الجهاز فقط، ولا تُرسل إلى أي خادم.</p><div id="libList"></div><label for="libStyle" style="display:block;margin-top:14px;font-weight:700">نظام التوثيق للتصدير</label><select id="libStyle" class="small-input" style="margin:6px 0 12px"></select><div class="citation-controls"><button type="button" class="go" onclick="libCopy()">نسخ الكل</button><button type="button" onclick="libDl()">تنزيل الملف</button><button type="button" onclick="libClear()">تفريغ المكتبة</button></div><textarea id="libOut" style="display:none;width:100%;min-height:120px;margin-top:10px;direction:ltr" readonly></textarea><div id="libMsg" class="copy-status" role="status" aria-live="polite"></div></div></div>
+<div class="modal-backdrop" id="aboutModal" role="dialog" aria-modal="true"><div class="login-card"><button type="button" class="modal-close" aria-label="إغلاق" onclick="document.getElementById('aboutModal').classList.remove('open')">×</button><h2>حول المنصة</h2><p>«الباحث العلمي» منصة بحث موحّدة تجمع نتائج OpenAlex وCrossref وSemantic Scholar وDOAJ في مكان واحد، وتتيح تصفيتها وتوثيقها بأنماط متعددة وحفظها في مكتبة شخصية، وتربطك بالمجلات والمستودعات الليبية.</p><p>تعمل بالكامل داخل المتصفح دون خادم، ولا تجمع أي بيانات عن المستخدمين.</p><button type="button" class="primary" onclick="document.getElementById('aboutModal').classList.remove('open')">فهمت</button></div></div>
 <script>
 const notice=document.getElementById('notice');
 const resultList=document.getElementById('resultList');
@@ -160,15 +234,16 @@ function typeLabel(w){
  const t=(w.type||'').toLowerCase();
  if(t.includes('book')) return 'كتاب';
  if(t.includes('dissertation')||t.includes('thesis')) return 'رسالة جامعية';
- if(t.includes('proceedings')||t.includes('conference')) return 'ورقة بحثية';
+ if(t.includes('proceedings')||t.includes('conference')||t.includes('preprint')||t.includes('posted')) return 'ورقة بحثية';
  return 'مقال علمي';
 }
 function getAuthors(w){return (w.authorships||[]).slice(0,6).map(a=>a.author?.display_name).filter(Boolean).join('، ')||'المؤلف غير متاح في الفهرس';}
 function getAbstract(w){
- if(!w.abstract_inverted_index) return '';
+ if(!w.abstract_inverted_index) return String(w.abstract_text||w.abstract||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
  try{const pairs=[];for(const [word,positions] of Object.entries(w.abstract_inverted_index)) for(const pos of positions) pairs.push([pos,word]);pairs.sort((a,b)=>a[0]-b[0]);return pairs.map(x=>x[1]).join(' ');}catch{return '';}
 }
-function sourceURL(w){return w.doi ? (w.doi.startsWith('http')?w.doi:'https://doi.org/'+w.doi) : (w.primary_location?.landing_page_url||w.best_oa_location?.landing_page_url||w.id||'');}
+function sourceURL(w){const u=sourceURL0(w);return /^https?:\/\//i.test(u)?u:''}
+function sourceURL0(w){return w.doi ? (w.doi.startsWith('http')?w.doi:'https://doi.org/'+w.doi) : (w.primary_location?.landing_page_url||w.best_oa_location?.landing_page_url||w.id||'');}
 function buildCard(w,i){
  const title=w.title||w.display_name||'عنوان غير متاح';
  const authors=getAuthors(w), year=w.publication_year||'غير محدد';
@@ -178,11 +253,11 @@ function buildCard(w,i){
  const url=sourceURL(w);
  const oa=w.open_access?.is_oa||w.best_oa_location?.pdf_url;
  const kind=typeLabel(w);
- return `<article class="result" data-year="${esc(year)}" data-kind="${esc(kind)}" data-title="${esc(title)}" data-authors="${esc(authors)}" data-venue="${esc(venue)}" data-doi="${esc(doi)}" data-url="${esc(url)}" data-abstract="${esc(abstract)}" data-oa="${oa?'1':'0'}" style="display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:18px;margin:12px 0;border:1px solid #dce5ef;border-radius:14px;background:#fff">
+ return `<article class="result" data-wid="${regW(w)}" data-year="${esc(year)}" data-kind="${esc(kind)}" data-title="${esc(title)}" data-authors="${esc(authors)}" data-venue="${esc(venue)}" data-doi="${esc(doi)}" data-url="${esc(url)}" data-abstract="${esc(abstract)}" data-oa="${oa?'1':'0'}" style="display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:18px;margin:12px 0;border:1px solid #dce5ef;border-radius:14px;background:#fff">
   <div><span style="display:inline-block;background:#e8f2ff;color:#15538b;padding:4px 8px;border-radius:6px;font-size:12px;margin-bottom:8px">${esc(kind)}</span>
   <h3 style="margin:0 0 9px;color:#082c50;line-height:1.6">${esc(title)}</h3>
   <div class="meta" style="display:grid;gap:5px;color:#64748b;font-size:13px;line-height:1.7">
-   <span><b>المؤلفون:</b> ${esc(authors)}</span><span><b>سنة النشر:</b> ${esc(year)}</span><span><b>المجلة/الجهة:</b> ${esc(venue)}</span>
+   <span><b>المؤلفون:</b> ${esc(authors)}</span><span><b>سنة النشر:</b> ${esc(year)}</span><span><b>الفهرس:</b> ${esc(w._provider||'')}</span><span><b>المجلة/الجهة:</b> ${esc(venue)}</span>
    ${doi?`<span><b>DOI:</b> <a href="${esc(doi.startsWith('http')?doi:'https://doi.org/'+doi)}" target="_blank" rel="noopener">${esc(doi.replace(/^https?:\/\/doi.org\//,''))}</a></span>`:''}
    ${abstract?`<p style="margin:4px 0;color:#334155">${esc(abstract.slice(0,600))}${abstract.length>600?'…':''}</p>`:'<p style="margin:4px 0;color:#64748b">لم يُدرج الملخص في الفهرس المسترجع؛ افتح صفحة المصدر للتحقق من النص والبيانات.</p>'}
   </div>
@@ -191,6 +266,7 @@ function buildCard(w,i){
    ${w.best_oa_location?.pdf_url?`<a class="go" style="display:inline-block;text-decoration:none;padding:9px 12px;border-radius:8px;color:#fff" href="${esc(w.best_oa_location.pdf_url)}" target="_blank" rel="noopener">النص الكامل / PDF</a>`:''}
    <button type="button" onclick="citation(this)">توثيق المرجع</button>
    <button type="button" onclick="showDetails(this)">تفاصيل المصدر</button>
+   <button type="button" onclick="saveRef(this)">☆ حفظ في مكتبتي</button>
   </div></div></article>`;
 }
 
@@ -213,21 +289,29 @@ function matchModeFilter(item, raw){
 }
 
 async function fetchOpenAlex(q){
- const u='https://api.openalex.org/works?search='+encodeURIComponent(q)+'&per-page=25&sort=relevance_score:desc';
+ const u='https://api.openalex.org/works?search='+encodeURIComponent(q)+'&per-page=25&sort=relevance_score:desc'+(()=>{const f=[document.getElementById('lang').value&&'language:'+document.getElementById('lang').value,document.getElementById('libyaOnly').checked&&'institutions.country_code:LY'].filter(Boolean).join(',');return f?'&filter='+f:''})();
  const r=await fetch(u,{headers:{'Accept':'application/json'},signal:(typeof AbortSignal!=='undefined' && AbortSignal.timeout)?AbortSignal.timeout(15000):undefined});
  if(!r.ok) throw new Error('OpenAlex: HTTP '+r.status);
  const j=await r.json(); return (j.results||[]).map(w=>({...w,_provider:'OpenAlex'}));
 }
 async function fetchCrossref(q){
- const u='https://api.crossref.org/works?query.bibliographic='+encodeURIComponent(q)+'&rows=20&select=DOI,title,author,published,container-title,type,URL,abstract,publisher';
+ const u='https://api.crossref.org/works?query.bibliographic='+encodeURIComponent(q)+'&rows=20&select=DOI,title,author,published,container-title,type,URL,abstract,publisher,volume,issue,page';
  const r=await fetch(u,{headers:{'Accept':'application/json'},signal:(typeof AbortSignal!=='undefined' && AbortSignal.timeout)?AbortSignal.timeout(15000):undefined});
  if(!r.ok) throw new Error('Crossref: HTTP '+r.status);
  const j=await r.json();
  return (j.message?.items||[]).map(x=>{
   const year=x.published?.['date-parts']?.[0]?.[0]||x.created?.['date-parts']?.[0]?.[0]||'';
-  return {title:Array.isArray(x.title)?x.title[0]:x.title,publication_year:year,doi:x.DOI,authorships:(x.author||[]).map(a=>({author:{display_name:[a.given,a.family].filter(Boolean).join(' ')}})),primary_location:{landing_page_url:x.URL,source:{display_name:(x['container-title']||[])[0]||x.publisher||'Crossref'}},type:x.type||'article',abstract:x.abstract,_provider:'Crossref'};
+  return {title:Array.isArray(x.title)?x.title[0]:x.title,publication_year:year,doi:x.DOI,authorships:(x.author||[]).map(a=>({author:{display_name:[a.given,a.family].filter(Boolean).join(' '),given:a.given,family:a.family}})),primary_location:{landing_page_url:x.URL,source:{display_name:(x['container-title']||[])[0]||x.publisher||'Crossref'}},type:x.type||'article',abstract:x.abstract,biblio:{volume:x.volume,issue:x.issue,first_page:(x.page||'').split('-')[0],last_page:(x.page||'').split('-')[1]},_provider:'Crossref'};
  });
 }
+async function fetchDOAJ(q){
+ const r=await fetch('https://doaj.org/api/search/articles/'+encodeURIComponent(document.getElementById('libyaOnly').checked?'('+q+') AND bibjson.journal.country:LY':q)+'?pageSize=20',{signal:(typeof AbortSignal!=='undefined'&&AbortSignal.timeout)?AbortSignal.timeout(15000):undefined});
+ if(!r.ok) throw new Error('DOAJ: HTTP '+r.status);
+ const j=await r.json();
+ return (j.results||[]).map(x=>{const b=x.bibjson||{},doi=((b.identifier||[]).find(i=>i.type==='doi')||{}).id||'',lk=(b.link||[]).find(l=>l.type==='fulltext')||(b.link||[])[0]||{};
+  return {title:b.title,publication_year:Number(b.year)||'',doi,authorships:(b.author||[]).map(a=>({author:{display_name:a.name}})),primary_location:{landing_page_url:lk.url||(doi?'https://doi.org/'+doi:''),source:{display_name:b.journal?.title||'DOAJ'}},biblio:{volume:b.journal?.volume,issue:b.journal?.number,first_page:b.start_page,last_page:b.end_page},abstract_text:b.abstract,open_access:{is_oa:true},best_oa_location:lk.url?{pdf_url:''}:null,type:'article',_provider:'DOAJ'}});
+}
+function langOK(w){const l=document.getElementById('lang').value;if(!l)return true;if(w.language)return w.language===l;const ar=AR.test((w.title||'')+(w.primary_location?.source?.display_name||'')+getAbstract(w));return l==='ar'?ar:!ar}
 async function fetchSemantic(q){
  const u='https://api.semanticscholar.org/graph/v1/paper/search?query='+encodeURIComponent(q)+'&limit=15&fields=title,authors,year,abstract,url,externalIds,venue,openAccessPdf,publicationTypes';
  const r=await fetch(u,{signal:(typeof AbortSignal!=='undefined' && AbortSignal.timeout)?AbortSignal.timeout(15000):undefined});
@@ -256,6 +340,11 @@ function countKinds(items){
  document.getElementById('statConferences').textContent=counts.conferences;
  document.getElementById('statOA').textContent=counts.oa;
 }
+const _W=[];function regW(w){_W.push(w);return _W.length-1}
+const SUBJ={'العلوم الشرعية':['islam','quran','hadith','sharia','fiqh','فقه','قرآن','حديث','شرع'],'التربية والتعليم':['educat','teach','learn','school','تعليم','تربي'],'العلوم التربوية':['educat','teach','learn','school','تعليم','تربي'],'العلوم الطبيعية':['physic','chem','biolog','math','ecolog','فيزياء','كيمياء','أحياء','رياضيات'],'العلوم الطبية':['medic','clinic','health','patient','disease','طب','صح','مرض'],'العلوم الإنسانية':['histor','literat','philosoph','linguist','social','تاريخ','أدب','لغ','فلسف','اجتماع'],'تقنية المعلومات':['comput','software','informat','network','artificial','algorithm','حاسب','برمج','معلومات','ذكاء']};
+function subjMatch(x,hay){const k=SUBJ[x];return hay.includes(x.toLowerCase())||(k?k.some(z=>hay.includes(z)):false)}
+function subjBoxOK(hay){const c=[...document.querySelectorAll('.subj-filter:checked')].map(x=>x.value);return !c.length||c.length===document.querySelectorAll('.subj-filter').length||c.some(x=>subjMatch(x,hay))}
+function accOK(w){const c=[...document.querySelectorAll('.acc-filter:checked')].map(x=>x.value);if(!c.length||c.length>1)return true;const oa=!!(w.open_access?.is_oa||w.best_oa_location?.pdf_url);return c[0]==='oa'?oa:!oa}
 function applyFilters(){
  const kindTop=document.getElementById('type').value, yearTop=document.getElementById('year').value;
  const selectedKinds=[...document.querySelectorAll('.kind-filter:checked')].map(x=>x.value);
@@ -265,22 +354,22 @@ function applyFilters(){
   const title=w.title||w.display_name||'', authors=getAuthors(w), venue=w.primary_location?.source?.display_name||w.host_venue?.display_name||'';
   const abstract=getAbstract(w)||w.abstract_text||'', hay=(title+' '+authors+' '+venue+' '+abstract).toLowerCase();
   const kind=typeLabel(w), year=String(w.publication_year||'');
-  return (!kindTop||kindTop==='__all__'||kind===kindTop)&&(!yearTop||yearTop==='__all__'||year===yearTop)&&(!selectedKinds.length||selectedKinds.includes(kind))&&(!subj||hay.includes(subj));
+  return (!kindTop||kindTop==='__all__'||kind===kindTop)&&(!yearTop||yearTop==='__all__'||year===yearTop)&&(!selectedKinds.length||selectedKinds.includes(kind))&&(!subj||subjMatch(subj,hay))&&subjBoxOK(hay.toLowerCase())&&accOK(w)&&statOK(w);
  });
  currentPage=1;renderPage();
 }
 function renderPage(){
  const total=filteredWorks.length, pages=Math.ceil(total/pageSize), start=(currentPage-1)*pageSize, items=filteredWorks.slice(start,start+pageSize);
- resultList.innerHTML=items.length?items.map(buildCard).join(''):'<div class="loading-state"><strong>لا توجد نتائج مطابقة</strong><br>جرّب تعديل عبارة البحث أو إزالة بعض عوامل التصفية، أو افتح إحدى قواعد البيانات الخارجية.</div>';
+ _W.length=0;resultList.innerHTML=items.length?items.map(buildCard).join(''):'<div class="loading-state"><strong>لا توجد نتائج مطابقة</strong><br>جرّب تعديل عبارة البحث أو إزالة بعض عوامل التصفية، أو افتح إحدى قواعد البيانات الخارجية.</div>';
  resultCount.textContent='نتائج البحث ('+total+')';
  document.getElementById('pageInfo').textContent='الصفحة '+(pages?currentPage:0)+' من '+pages+' · '+items.length+' في هذه الصفحة';
  document.getElementById('prevPage').disabled=currentPage<=1||pages===0;
  document.getElementById('nextPage').disabled=currentPage>=pages||pages===0;
- countKinds(filteredWorks);
+ countKinds(allWorks);markStats();renderPageNums(pages);
 }
 function changePage(delta){const pages=Math.ceil(filteredWorks.length/pageSize);if(!pages)return;currentPage=Math.max(1,Math.min(pages,currentPage+delta));renderPage();document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});}
-function renderResults(items){allWorks=items;currentPage=1;applyFilters();}
-function setTopCategory(kind){document.getElementById('type').value=kind||'';document.getElementById('results').scrollIntoView({behavior:'smooth'});applyFilters();}
+function renderResults(items){statSel='';allWorks=items.map((w,i)=>(w._rank=i,w));currentPage=1;applyFilters();}
+function setTopCategory(kind){document.getElementById('type').value=kind||'';document.getElementById('results').scrollIntoView({behavior:'smooth'});if(allWorks.length)applyFilters();else{const q=document.getElementById('query');if(q.value.trim())document.getElementById('searchForm').dispatchEvent(new Event('submit',{cancelable:true}));else{message('اختر نوع المصدر','اكتب كلمات البحث ثم اضغط «بحث في المصادر»؛ سيُطبَّق النوع المختار تلقائيًا.');q.focus()}}}
 function showHome(){window.scrollTo({top:0,behavior:'smooth'});}
 function openLogin(){document.getElementById('loginModal').classList.add('open');}
 function closeLogin(){document.getElementById('loginModal').classList.remove('open');}
@@ -290,24 +379,25 @@ document.getElementById('searchForm').addEventListener('submit',async function(e
  e.preventDefault(); const q=document.getElementById('query').value.trim();
  if(!q){message('أدخل عبارة البحث','اكتب عنوانًا أو اسم مؤلف أو موضوعًا، ثم اضغط بحث.');return;}
  resultList.innerHTML='<div class="loading-state"><strong>جارٍ البحث في الفهارس العلمية…</strong><br>نحاول الوصول إلى OpenAlex وCrossref وSemantic Scholar. قد تتأخر بعض الخدمات أو تمنع الاتصال المباشر.</div>';
- resultCount.textContent='جارٍ البحث…';hideMessage();
+ resultCount.textContent='جارٍ البحث…';hideMessage();try{history.replaceState(null,'','?q='+encodeURIComponent(q)+'&m='+document.getElementById('queryMode').value)}catch{}renderLibya(q);
  const mode=document.getElementById('queryMode')?.value||'words';
- const remoteQ=(mode==='any')?q.trim().split(/\s+/).slice(0,3).join(' '):q;
- const tasks=[fetchOpenAlex(remoteQ),fetchCrossref(remoteQ),fetchSemantic(remoteQ)];
+ const remoteQ=q.replace(/"/g,'');
+ const ly=document.getElementById('libyaOnly').checked,tasks=ly?[fetchOpenAlex(buildSearchQuery(q)),fetchDOAJ(remoteQ)]:[fetchOpenAlex(buildSearchQuery(q)),fetchCrossref(remoteQ),fetchSemantic(remoteQ),fetchDOAJ(remoteQ)];
  const settled=await Promise.allSettled(tasks);
- const all=settled.filter(x=>x.status==='fulfilled').flatMap(x=>x.value);
+ const lists=settled.filter(x=>x.status==='fulfilled').map(x=>x.value),all=[];for(let i=0;i<30;i++)lists.forEach(l=>l[i]&&all.push(l[i]));
  const errors=settled.filter(x=>x.status==='rejected').map(x=>x.reason?.message||'تعذر الاتصال بمصدر');
- const results=dedupe(all).filter(w=>matchModeFilter(w,q)).slice(0,50);
+ const results=dedupe(all).filter(w=>matchModeFilter(w,q)&&langOK(w)).slice(0,60);
  renderResults(results);
  if(results.length) {
-  message('اكتمل البحث',`عُثر على ${results.length} نتيجة مدمجة من الفهارس المتاحة. افتح صفحة المصدر للتحقق من النص الكامل وبيانات النشر.`);
+  message('اكتمل البحث',`عُثر على ${results.length} نتيجة (${Object.entries(results.reduce((m,w)=>(m[w._provider]=(m[w._provider]||0)+1,m),{})).map(e=>e.join(': ')).join('، ')})${errors.length?' — تعذّر: '+errors.join('؛ '):''}. افتح صفحة المصدر للتحقق من النص الكامل وبيانات النشر.`);
  } else {
   message('لم تظهر نتائج كافية',errors.length?errors.join('؛ ')+' — قد يمنع المتصفح الاتصال ببعض الفهارس. جرّب عبارة أقصر أو افتح محركًا خارجيًا.':'لم تُرجع الفهارس نتائج مطابقة. جرّب نمط «مجموعات كلمات» أو عبارة أقصر.');
  }
  applyFilters();
 });
 document.getElementById('sort').addEventListener('change',function(){
- if(this.value==='الأحدث نشرًا') allWorks.sort((a,b)=>(Number(b.publication_year)||0)-(Number(a.publication_year)||0));
+ if(this.value==='الأكثر صلة') allWorks.sort((a,b)=>(a._rank||0)-(b._rank||0));
+ else if(this.value==='الأحدث نشرًا') allWorks.sort((a,b)=>(Number(b.publication_year)||0)-(Number(a.publication_year)||0));
  else if(this.value==='الأقدم نشرًا') allWorks.sort((a,b)=>(Number(a.publication_year)||0)-(Number(b.publication_year)||0));
  applyFilters();
 });
@@ -319,31 +409,51 @@ document.querySelectorAll('.kind-filter').forEach(cb=>cb.addEventListener('chang
 function resetFilters(){
  document.querySelectorAll('.kind-filter').forEach(x=>x.checked=false);
  document.querySelectorAll('.filter-group input[type=checkbox]').forEach(x=>x.checked=false);
- document.getElementById('query').value='';document.getElementById('type').value='';document.getElementById('year').value='';document.getElementById('subject').value='';document.getElementById('subjectText').value='';
- currentPage=1;applyFilters();hideMessage();
+ document.getElementById('type').value='';document.getElementById('year').value='';document.getElementById('subject').value='';document.getElementById('subjectText').value='';
+ statSel='';currentPage=1;applyFilters();hideMessage();
 }
 function selectAllKinds(){document.querySelectorAll('.kind-filter').forEach(x=>x.checked=true);applyFilters();}
-function selectAllSubjects(){document.getElementById('subject').value='__all__';document.getElementById('subjectText').value='';applyFilters();}
-function selectAllAccess(){document.querySelectorAll('.filter-group input[type=checkbox]').forEach(x=>x.checked=true);applyFilters();}
+function selectAllSubjects(){const b=[...document.querySelectorAll('.subj-filter')],all=b.every(x=>x.checked);b.forEach(x=>x.checked=!all);document.getElementById('subject').value='';document.getElementById('subjectText').value='';applyFilters();}
+function selectAllAccess(){document.querySelectorAll('.acc-filter').forEach(x=>x.checked=true);applyFilters();}
 function showDetails(btn){const c=btn.closest('.result');const text=`المصدر: ${c.dataset.venue}\nسنة النشر: ${c.dataset.year}\nالمؤلفون: ${c.dataset.authors}\nDOI: ${c.dataset.doi||'غير متاح'}\nالرابط: ${c.dataset.url}`;alert(text);}
 function closeCitation(){document.getElementById('citationModal').classList.remove('open');}
-function citation(btn){
- const c=btn.closest('.result'), title=c.dataset.title, authors=c.dataset.authors, year=c.dataset.year||'n.d.', venue=c.dataset.venue||'';
- const doi=c.dataset.doi;const url=c.dataset.url;
- const fmtAuthors=authors==='المؤلف غير متاح في الفهرس'?'Author not listed':authors;
+const AR=/[\u0600-\u06FF]/;
+function authList(w){return (w.authorships||[]).map(a=>a.author||{}).filter(a=>a.display_name).map(a=>{let f=a.family,g=a.given;if(!f){const n=a.display_name.trim();if(n.includes(',')){f=n.split(',')[0];g=n.split(',').slice(1).join(' ')}else{const p=n.split(/\s+/);f=p.length>1?p.pop():n;g=p.join(' ')}}return{f:(f||'').trim(),g:(g||'').trim()}})}
+const words=g=>g.split(/[\s.-]+/).filter(Boolean);
+const iDot=g=>AR.test(g)?g:words(g).map(x=>x[0].toUpperCase()+'.').join(' ');
+const iTight=g=>AR.test(g)?g:words(g).map(x=>x[0].toUpperCase()).join('');
+const dot=x=>x?(/[.]$/.test(x)?x+' ':x+'. '):'';
+function joinL(arr,last){return arr.length<2?arr.join(''):arr.slice(0,-1).join(', ')+last+arr[arr.length-1]}
+function citation(btn){showCite(_W[btn.closest('.result').dataset.wid]||{})}
+function showCite(w,quiet){const au=authList(w),n=au.length;
+ const t=(w.title||w.display_name||'').replace(/\s+/g,' ').trim(),y=w.publication_year||'n.d.',v=w.primary_location?.source?.display_name||'',bb=w.biblio||{},vol=bb.volume||'',iss=bb.issue||'',pg=bb.first_page?bb.first_page+(bb.last_page&&bb.last_page!==bb.first_page?'–'+bb.last_page:''):'',doi=(w.doi||'').replace(/^https?:\/\/doi\.org\//,''),url=doi?'https://doi.org/'+doi:sourceURL(w);
+ const ty=(w.type||'').toLowerCase(),isBook=ty.includes('book')&&!ty.includes('chapter'),isThesis=/dissertation|thesis/.test(ty),isConf=/proceedings|conference/.test(ty);
+ const lf=a=>a.g?a.f+', '+iDot(a.g):a.f, fl=a=>a.g?iDot(a.g)+' '+a.f:a.f, full=a=>a.g?a.f+', '+a.g:a.f;
+ const vi=vol?', '+vol+(iss?'('+iss+')':''):'',pp=pg?', '+pg:'';
+ const apaA=n>20?au.slice(0,19).map(lf).join(', ')+', … '+lf(au[n-1]):joinL(au.map(lf),', & ');
+ const mlaA=n===1?full(au[0]):n===2?full(au[0])+', and '+(au[1].g?au[1].g+' ':'')+au[1].f:n>2?full(au[0])+', et al':'';
+ const ieeeA=n>6?fl(au[0])+' et al.':joinL(au.map(fl),n>2?', and ':' and ');
+ const vanA=au.slice(0,6).map(a=>a.f+(a.g?' '+iTight(a.g):'')).join(', ')+(n>6?', et al':'');
+ const harA=joinL(au.map(a=>a.f+(a.g?', '+iDot(a.g).replace(/ /g,''):'')),' and ');
+ const chA=n?joinL(au.map((a,i)=>i?(a.g?a.g+' ':'')+a.f:full(a)),', and '):'';
+ const acsA=au.map(a=>a.f+(a.g?', '+iDot(a.g):'')).join('; ');
+ const loc=(vol?' '+vol:'')+(iss?' ('+iss+')':'')+(pg?': '+pg:'');
+ const key=((au[0]?.f||'ref').replace(/[^A-Za-z0-9\u0600-\u06FF]/g,'')+y+(t.match(/[A-Za-z]{4,}/)||[''])[0]).toLowerCase();
+ const bt=isBook?'book':isThesis?'phdthesis':isConf?'inproceedings':'article',vf=isConf?'booktitle':isBook?'publisher':isThesis?'school':'journal';
+ const bib='@'+bt+'{'+key+',\n'+[['title','{'+t+'}'],['author',au.map(full).join(' and ')],[vf,v],['year',y],['volume',vol],['number',iss],['pages',pg.replace('–','--')],['doi',doi],['url',doi?'':url]].filter(r=>r[1]&&r[1]!=='{}').map(r=>'  '+r[0]+' = {'+r[1]+'}').join(',\n')+'\n}';
+ const ris=['TY  - '+(isBook?'BOOK':isThesis?'THES':isConf?'CONF':'JOUR'),...au.map(a=>'AU  - '+full(a)),'TI  - '+t,'T2  - '+v,'PY  - '+y,vol&&'VL  - '+vol,iss&&'IS  - '+iss,bb.first_page&&'SP  - '+bb.first_page,bb.last_page&&'EP  - '+bb.last_page,doi&&'DO  - '+doi,url&&'UR  - '+url,'ER  - '].filter(Boolean).join('\n');
  citationFormats={
-  apa:`${fmtAuthors}. (${year}). ${title}. ${venue}.${doi?' https://doi.org/'+doi.replace(/^https?:\/\/doi.org\//,''):url?' '+url:''}`,
-  mla:`${fmtAuthors}. “${title}.” ${venue}, ${year}.${url?' '+url:''}`,
-  chicagoNB:`${fmtAuthors}. “${title}.” ${venue} (${year}).${url?' '+url:''}`,
-  chicagoAD:`${fmtAuthors}. ${year}. “${title}.” ${venue}.${url?' '+url:''}`,
-  ieee:`${fmtAuthors}, “${title},” ${venue}, ${year}.${doi?' doi: '+doi:''}`,
-  vancouver:`${fmtAuthors}. ${title}. ${venue}. ${year}.${doi?' doi: '+doi:''}`,
-  harvard:`${fmtAuthors} (${year}) '${title}', ${venue}.${url?' Available at: '+url:''}`,
-  acs:`${fmtAuthors}. ${title}. ${venue} ${year}.${doi?' DOI: '+doi:''}`,
-  bibtex:`@article{ref${String(year).replace(/\\D/g,'')},\\n  title = {${title}},\\n  author = {${fmtAuthors}},\\n  journal = {${venue}},\\n  year = {${year}},\\n  doi = {${doi}}\\n}`
- };
- document.getElementById('citationOutput').value=citationFormats[document.getElementById('citationStyle').value]||citationFormats.apa;
- document.getElementById('citationModal').classList.add('open');if(document.getElementById('citationCopyStatus'))document.getElementById('citationCopyStatus').textContent='';document.getElementById('citationOutput').focus();
+  apa:`${dot(apaA)}(${y}). ${t}. ${v?v+vi+pp+'. ':''}${url}`,
+  mla:`${dot(mlaA)}“${t}.” ${v}${vol?', vol. '+vol:''}${iss?', no. '+iss:''}, ${y}${pg?', pp. '+pg:''}${url?', '+url:''}.`,
+  chicagoNB:`${dot(chA)}“${t}.” ${v}${loc} (${y}).${url?' '+url+'.':''}`,
+  chicagoAD:`${dot(chA)}${y}. “${t}.” ${v}${loc}.${url?' '+url+'.':''}`,
+  ieee:`${ieeeA?ieeeA+', ':''}“${t},” ${v}${vol?', vol. '+vol:''}${iss?', no. '+iss:''}${pg?', pp. '+pg:''}, ${y}${doi?', doi: '+doi:''}.`,
+  vancouver:`${dot(vanA)}${t}. ${v}. ${y}${vol?';'+vol:''}${iss?'('+iss+')':''}${pg?':'+pg:''}.${doi?' doi:'+doi:''}`,
+  harvard:`${harA} (${y}) '${t}', ${v}${vol?', '+vol:''}${iss?'('+iss+')':''}${pg?', pp. '+pg:''}.${url?' Available at: '+url:''}`,
+  acs:`${dot(acsA)}${t}. ${v} ${y}${vol?', '+vol:''}${iss?' ('+iss+')':''}${pg?', '+pg:''}.${doi?' DOI: '+doi:''}`,
+  bibtex:bib,ris:ris};
+ if(quiet)return citationFormats;document.getElementById('citationOutput').value=citationFormats[document.getElementById('citationStyle').value]||citationFormats.apa;
+ document.getElementById('citationModal').classList.add('open');document.getElementById('citationCopyStatus').textContent='';document.getElementById('citationOutput').focus();
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('citationModal'))document.getElementById('citationModal').classList.remove('open');});
 document.getElementById('citationStyle').addEventListener('change',function(){document.getElementById('citationOutput').value=(citationFormats&&citationFormats[this.value])||(citationFormats&&citationFormats.apa)||'';});
@@ -392,7 +502,7 @@ document.getElementById('downloadCitationBtn').addEventListener('click',function
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
   a.href=url;
-  a.download='Albahith-Citation.txt';
+  a.download='Albahith-Citation.'+({bibtex:'bib',ris:'ris'}[document.getElementById('citationStyle').value]||'txt');
   a.style.display='none';
   document.body.appendChild(a);
   a.click();
@@ -405,21 +515,69 @@ document.getElementById('downloadCitationBtn').addEventListener('click',function
   message('تنزيل الاقتباس','تعذر إنشاء التنزيل في هذا المتصفح.');
  }
 });
+
+(function(){const y=new Date().getFullYear();document.getElementById('year').innerHTML='<option value="">جميع السنوات</option>'+Array.from({length:y-1999},(_,i)=>'<option>'+(y-i)+'</option>').join('');
+document.querySelectorAll('option[value="__all__"]').forEach(o=>o.remove());
+document.querySelectorAll('.filter-group').forEach(g=>{const h=g.querySelector('h4').textContent;g.querySelectorAll('input[type=checkbox]:not(.kind-filter)').forEach(c=>{const t=c.parentElement.textContent.trim();if(h==='التخصص'){c.classList.add('subj-filter');c.value=t}else{c.classList.add('acc-filter');c.value=t.startsWith('متاح')?'oa':'closed'}c.addEventListener('change',applyFilters)})});
+document.querySelectorAll('.loading-state').forEach(e=>e.style.cssText='padding:26px;text-align:center;color:#64748b;line-height:1.9;background:#fff;border:1px dashed #cbd8e7;border-radius:12px')})();
+
+const LK='albahith_lib_v1';
+function libGet(){try{return JSON.parse(localStorage.getItem(LK)||'[]')}catch{return []}}
+function libSet(a){try{localStorage.setItem(LK,JSON.stringify(a))}catch{lm('تعذّر الحفظ: التخزين معطّل في هذا المتصفح.')}libCount()}
+function libCount(){const e=document.getElementById('libN');if(e)e.textContent=libGet().length}
+function lm(t){const e=document.getElementById('libMsg');if(e)e.textContent=t}
+const wkey=w=>String(w.doi||w.title||'').toLowerCase().replace(/^https?:\/\/doi\.org\//,'');
+function slim(w){return{title:w.title||w.display_name,publication_year:w.publication_year,doi:w.doi,authorships:(w.authorships||[]).map(a=>({author:{display_name:a.author?.display_name,given:a.author?.given,family:a.author?.family}})),primary_location:{landing_page_url:w.primary_location?.landing_page_url,source:{display_name:w.primary_location?.source?.display_name}},biblio:w.biblio,type:w.type,open_access:w.open_access,abstract_text:getAbstract(w).slice(0,1500),_provider:w._provider}}
+function saveRef(btn){const w=_W[btn.closest('.result').dataset.wid];if(!w)return;const a=libGet();if(a.some(x=>wkey(x)===wkey(w))){message('مكتبتي','المرجع محفوظ مسبقًا.');return}a.push(slim(w));libSet(a);btn.textContent='★ محفوظ';message('مكتبتي','أُضيف المرجع (المجموع: '+a.length+'). يُحفظ في هذا المتصفح فقط.')}
+function openLib(){renderLib();document.getElementById('libOut').style.display='none';lm('');document.getElementById('libModal').classList.add('open')}
+function renderLib(){const a=libGet();document.getElementById('libList').innerHTML=a.length?a.map((w,i)=>'<div style="display:flex;gap:10px;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #e5edf6"><span style="font-size:14px;line-height:1.7">'+esc(w.title)+' <small style="color:#64748b">('+esc(w.publication_year||'')+')</small></span><button type="button" class="plain-btn" style="color:#a33;border-color:#e0b4b4;flex:none" onclick="libDel('+i+')">حذف</button></div>').join(''):'<p>لا توجد مراجع محفوظة بعد. اضغط «حفظ في مكتبتي» في أي نتيجة.</p>';libCount()}
+function libDel(i){const a=libGet();a.splice(i,1);libSet(a);renderLib()}
+function libText(){const st=document.getElementById('libStyle').value,x=libGet().map(w=>showCite(w,true)[st]);return(st==='bibtex'||st==='ris')?x.join('\n\n'):x.sort((p,q)=>p.localeCompare(q)).join('\n\n')}
+async function libCopy(){const t=libText();if(!t){lm('المكتبة فارغة.');return}try{await navigator.clipboard.writeText(t);lm('تم نسخ '+libGet().length+' مرجعًا.')}catch{const f=document.getElementById('libOut');f.value=t;f.style.display='block';f.select();lm('تعذّر النسخ التلقائي؛ حُدِّد النص فانسخه يدويًا.')}}
+function libDl(){const t=libText();if(!t){lm('المكتبة فارغة.');return}const st=document.getElementById('libStyle').value,u=URL.createObjectURL(new Blob(['\uFEFF',t],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=u;a.download='Albahith-Library.'+({bibtex:'bib',ris:'ris'}[st]||'txt');document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);lm('تم تجهيز الملف.')}
+function libClear(){if(libGet().length&&confirm('حذف كل المراجع المحفوظة؟')){libSet([]);renderLib()}}
+(function(){const ls=document.getElementById('libStyle');ls.innerHTML=document.getElementById('citationStyle').innerHTML;libCount();
+const m=document.getElementById('libModal');m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')m.classList.remove('open')});
+const p=new URLSearchParams(location.search);if(p.get('q')){document.getElementById('query').value=p.get('q');if(p.get('m'))document.getElementById('queryMode').value=p.get('m');document.getElementById('searchForm').dispatchEvent(new Event('submit',{cancelable:true}))}})();
+
+const LY=[['dolj.ly','دليل المجلات الليبية الإلكتروني','Libyan Journals Directory'],['lsjp.epc.ly','المنصة الليبية للمجلات العلمية المحكمة','Libyan Peer-Reviewed Journals Platform'],['jisprs.ly','مكتبة الهيئة الليبية للبحث العلمي','Libyan Authority for Scientific Research Library'],['repository.uob.edu.ly','المستودع الرقمي لجامعة بنغازي','University of Benghazi Digital Repository'],['journals.misuratau.edu.ly','مجلات جامعة مصراتة','Misurata University Journals'],['su.edu.ly','المجلات العلمية بجامعة سرت','Sirte University Journals'],['journals.ly','المنصة الليبية للمجلات المحكمة','Libyan Journals Platform'],['jsr.africaun.edu.ly','مجلة البحوث العلمية – جامعة أفريقيا','Journal of Scientific Research – University of Africa'],['omu.edu.ly','مجلة المختار للعلوم – جامعة عمر المختار','Al-Mukhtar Journal of Sciences – Omar Al-Mukhtar University'],['ajbas.academy.edu.ly','مجلة الأكاديمية للعلوم الأساسية والتطبيقية','Academy Journal of Basic and Applied Sciences'],['d.journal.tu.edu.ly','مجلة دلالات – جامعة طبرق','Dalalat Journal – University of Tobruk'],['bwu.edu.ly','مجلة جامعة بني وليد','Bani Waleed University Journal'],['zu.edu.ly','جامعة الزاوية (مجلات ومستودع)','University of Zawia (journals & repository)']];
+function renderLibya(q){window._lq=q;const en=LANG==='en',p=document.getElementById('libyaPanel');
+ p.innerHTML='<summary style="cursor:pointer;font-weight:800;color:#082c50">'+(en?'Libyan journals & university repositories':'المجلات الليبية والمستودعات الجامعية')+'</summary><p style="color:#64748b;font-size:13px;line-height:1.8;margin:8px 0">'+(en?(q?'Search “'+esc(q)+'” inside each source (opens in a new tab):':'Run a search first to query each source, or open a site directly:'):(q?'ابحث عن «'+esc(q)+'» داخل كل مصدر (يُفتح في تبويب جديد):':'أجرِ بحثًا أولًا لتبحث داخل كل مصدر، أو افتح الموقع مباشرة:'))+'</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px">'+LY.map(x=>'<div class="resource-link"><div>'+esc(en?x[2]:x[1])+'</div><small><a href="https://'+x[0]+'/" target="_blank" rel="noopener">'+(en?'Open site':'فتح الموقع')+'</a>'+(q?' · <a href="https://www.google.com/search?q='+encodeURIComponent('site:'+x[0]+' '+q)+'" target="_blank" rel="noopener">'+(en?'Search this source':'بحث في هذا المصدر')+'</a>':'')+'</small></div>').join('')+'</div>';p.style.display='block'}
+/* ---- bilingual UI ---- */
+const EN={'الرئيسة':'Home','المصادر':'Sources','المجلات العلمية':'Journals','الكتب':'Books','الأوراق البحثية':'Research papers','الرسائل الجامعية':'Theses','قواعد البيانات':'Databases','حول المنصة':'About','مكتبتي (':'My library (','تسجيل الدخول':'Sign in','الباحث العلمي':'Academic Researcher','مصادر موثوقة، بحث أعمق، ومعرفة أوسع':'Trusted sources, deeper search, wider knowledge','اكتشف المصادر العلمية الموثوقة':'Discover trusted scholarly sources','منصة بحثية متخصصة للكتب والمراجع والمقالات والأوراق البحثية من مختلف التخصصات':'A research platform for books, references, articles and papers across disciplines','نمط البحث':'Search mode','مجموعات كلمات':'Word groups','جملة محددة':'Exact phrase','أي كلمة من العبارة':'Any word','بحث في المصادر':'Search sources','اكتب الكلمات المفتاحية: عنوان، مؤلف، موضوع أو كلمة من الملخص...':'Keywords: title, author, topic or abstract word...','جميع التخصصات':'All subjects','جميع السنوات':'All years','جميع أنواع المصادر':'All source types','كل اللغات':'All languages','العربية':'Arabic','الإنجليزية':'English','مصادر ليبية فقط':'Libyan sources only','الكتب ضمن النتائج':'Books in results','المقالات العلمية':'Journal articles','الرسائل الجامعية':'Theses','أعمال المؤتمرات':'Conference proceedings','متاح الوصول المفتوح':'Open access','تصفية نتائج البحث':'Filter results','نوع المصدر':'Source type','الكل':'All','كتاب':'Book','مقال علمي':'Journal article','ورقة بحثية':'Research paper','رسالة جامعية':'Thesis','التخصص':'Subject','اكتب اسم التخصص':'Type a subject','العلوم الشرعية':'Islamic sciences','التربية والتعليم':'Education','العلوم الطبيعية':'Natural sciences','العلوم الطبية':'Medical sciences','العلوم الإنسانية':'Humanities','العلوم التربوية':'Educational sciences','تقنية المعلومات':'Information technology','إتاحة النص الكامل':'Full-text access','متاح مجانًا':'Free access','غير مفتوح الوصول (قد يتطلب اشتراكًا)':'Not open access (may need a subscription)','مسح عوامل التصفية':'Clear filters','ترتيب النتائج:':'Sort by:','الأكثر صلة':'Most relevant','الأحدث نشرًا':'Newest first','الأقدم نشرًا':'Oldest first','السابقة':'Previous','التالية':'Next','ابدأ البحث العلمي':'Start your search','لا توجد نتائج مطابقة':'No matching results','المؤلفون:':'Authors:','سنة النشر:':'Year:','المجلة/الجهة:':'Journal/Venue:','الفهرس:':'Index:','فتح صفحة المصدر':'Open source page','النص الكامل / PDF':'Full text / PDF','توثيق المرجع':'Cite','تفاصيل المصدر':'Details','☆ حفظ في مكتبتي':'☆ Save to library','★ محفوظ':'★ Saved','المؤلف غير متاح في الفهرس':'Author not listed in the index','عنوان غير متاح':'Title unavailable','جهة النشر غير متاحة':'Venue unavailable','غير محدد':'Unspecified','نتائج البحث':'Search results','أنظمة التوثيق والاقتباس':'Citation styles','نظام التوثيق':'Citation style','مسودة التوثيق':'Citation draft','نسخ الاقتباس':'Copy citation','تنزيل TXT':'Download','إغلاق':'Close','مكتبتي':'My library','نظام التوثيق للتصدير':'Export citation style','نسخ الكل':'Copy all','تنزيل الملف':'Download file','تفريغ المكتبة':'Clear library','حذف':'Delete','تسجيل دخول الباحث':'Researcher sign-in','حفظ المراجع':'Saved references','سجل البحث':'Search history','قائمة المفضلة':'Favourites','إدارة الاقتباسات':'Citation manager','فهمت':'Got it','بوابات البحث العلمي والأكاديمي':'Scholarly and academic portals','فكرة وتصميم: د. حسن الشيباني':'Concept and design: Dr. Hassan Al-Shebani','حول المنصة ':'About the platform','الباحث العلمي من Google':'Google’s scholarly search','فهرس مفتوح للأبحاث والمؤلفين':'Open index of works and authors','بيانات DOI والمراجع العلمية':'DOI metadata and references','الأوراق العلمية والاستشهادات':'Papers and citations','الطب والعلوم الحيوية':'Medicine and life sciences','المجلات مفتوحة الوصول':'Open-access journals','أبحاث ومستودعات مفتوحة':'Open research and repositories','محرك بحث أكاديمي للمستودعات':'Academic repository search','مجلات وكتب ومصادر إنسانية':'Journals, books and humanities sources','فهرس المكتبات والكتب':'Library and book catalogue','الرياضيات والفيزياء والحوسبة':'Maths, physics and computing','أعلى الصفحة':'Top of page','أسفل الصفحة':'Bottom of page','الانتقال إلى أعلى الصفحة':'Scroll to top','الانتقال إلى أسفل الصفحة':'Scroll to bottom'};
+const PRE=[['الجملة المحددة:','Exact phrase: finds the phrase as contiguous as possible. Word groups: relies on the indexes’ relevance ranking without local exclusion. Any word: one matching word is enough.'],['يُستخدم الحساب','Accounts will manage profiles, saved references and searches in a server-connected release. This version has no secure account system yet, so no password is requested.'],['اختر النمط الذي تطلبه','Choose the style your journal or conference requires. The output is a draft built from the visible data; complete missing fields and check the publisher’s guide before submitting.'],['روابط مباشرة إلى محركات','Direct links to search engines, journals and university repositories. Searching inside external sites opens the original site; unified results come from open data APIs.'],['«الباحث العلمي» منصة','“Academic Researcher” is a unified search platform that merges results from OpenAlex, Crossref, Semantic Scholar and DOAJ, lets you filter and cite them in several styles, save them to a personal library, and links you to Libyan journals and repositories.'],['تعمل بالكامل داخل المتصفح','It runs entirely in your browser with no server and collects no user data.'],['المراجع المحفوظة تبقى','Saved references stay in this browser on this device only and are never sent to a server.'],['أجرِ بحثًا','Run a search first to query each source, or open a site directly:']];
+const SUB={'اكتمل البحث':'Search complete','عُثر على ':'Found ',' نتيجة (':' results (',' — تعذّر: ':' — failed: ','افتح صفحة المصدر للتحقق من النص الكامل وبيانات النشر.':'Open the source page to verify the full text and publication data.','جارٍ البحث…':'Searching…','جارٍ البحث في الفهارس العلمية…':'Searching scholarly indexes…','أدخل عنوانًا أو موضوعًا أو اسم مؤلف، وستظهر النتائج الفعلية من الفهرس العلمي.':'Enter a title, topic or author; real results will appear from the scholarly indexes.','جرّب تعديل عبارة البحث أو إزالة بعض عوامل التصفية، أو افتح إحدى قواعد البيانات الخارجية.':'Try changing the query or removing some filters, or open an external database.','أدخل عبارة البحث':'Enter a query','اكتب عنوانًا أو اسم مؤلف أو موضوعًا، ثم اضغط بحث.':'Type a title, author or topic, then press Search.','اختر نوع المصدر':'Choose a source type','اكتب كلمات البحث ثم اضغط «بحث في المصادر»؛ سيُطبَّق النوع المختار تلقائيًا.':'Type your keywords and press Search; the chosen type will be applied automatically.','مكتبتي':'My library','أُضيف المرجع (المجموع: ':'Reference added (total: ','). يُحفظ في هذا المتصفح فقط.':'). Stored in this browser only.','المرجع محفوظ مسبقًا.':'Already saved.','لا يوجد اقتباس لنسخه. افتح «توثيق المرجع» من بطاقة مرجع أولًا.':'Nothing to copy. Open “Cite” on a result first.','تم نسخ الاقتباس إلى الحافظة.':'Citation copied.','جمعية اللغة الحديثة':'Modern Language Association','الجمعية الأمريكية لعلم النفس':'American Psychological Association','الحواشي وقائمة المراجع':'notes and bibliography','المؤلف والتاريخ':'author-date','الترقيم الهندسي والتقني':'engineering numbering','الترقيم الطبي':'medical numbering','الكيمياء':'chemistry','لإدارة المراجع':'reference managers','الصفحة ':'Page ','في هذه الصفحة':'on this page'};
+const SCOPE='#notice,.loading-state,#pageInfo,#resultCount,.copy-status,#libMsg,#citationStyle,#libStyle';
+let LANG=(()=>{try{return localStorage.getItem('albahith_ui')}catch{return null}})()||'ar';
+const OR=new WeakMap();
+function trText(n,v){const t=v.trim();if(!t)return v;if(EN[t])return v.replace(t,EN[t]);const p=n.parentElement;if(!p)return v;
+ if(p.closest('p,.search-help,#academicSources>p'))for(const [k,e] of PRE)if(t.startsWith(k))return v.replace(t,e);
+ if(p.closest(SCOPE)){let o=v.replace(/الصفحة (\d+) من (\d+) · (\d+) في هذه الصفحة/,'Page $1 of $2 · $3 on this page').replace(/نتائج البحث \((\d+)\)/,'Search results ($1)');if(!/Page \d/.test(o))for(const k in SUB)if(o.includes(k))o=o.split(k).join(SUB[k]);return o}return v}
+function walk(){const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement&&!n.parentElement.closest('script,style,textarea,[data-notr]')?1:2}),L=[];let n;while(n=w.nextNode())L.push(n);
+ for(const n of L){if(LANG==='en'){let o=OR.get(n);if(o===undefined||n.nodeValue!==trText(n,o)){o=n.nodeValue;OR.set(n,o)}const v=trText(n,o);if(v!==n.nodeValue)n.nodeValue=v}else if(OR.has(n)){n.nodeValue=OR.get(n);OR.delete(n)}}
+ for(const e of document.querySelectorAll('[placeholder],[title],[aria-label]'))for(const a of['placeholder','title','aria-label']){if(!e.hasAttribute(a)||e.closest('[data-notr]')||(a==='title'&&e.classList.contains('icon-btn')))continue;e._o=e._o||{};if(LANG==='en'){if(e._o[a]===undefined)e._o[a]=e.getAttribute(a);e.setAttribute(a,EN[e._o[a]]||e._o[a])}else if(e._o[a]!==undefined)e.setAttribute(a,e._o[a])}}
+const mo=new MutationObserver(()=>{if(LANG==='en')applyLang()});
+function applyLang(){mo.disconnect();walk();mo.observe(document.body,{childList:true,subtree:true,characterData:true})}
+function setLang(l){LANG=l;try{localStorage.setItem('albahith_ui',l)}catch{}document.documentElement.lang=l;document.documentElement.dir=l==='en'?'ltr':'rtl';document.title=l==='en'?'Academic Researcher':'الباحث العلمي';document.getElementById('langBtn').textContent=l==='en'?'العربية':'English';applyLang();renderLibya(window._lq||'');themeLabel()}
+function toggleLang(){setLang(LANG==='en'?'ar':'en')}
+function openAbout(){document.getElementById('aboutModal').classList.add('open')}
+(function(){const a=document.getElementById('aboutModal');a.addEventListener('click',e=>{if(e.target===a)a.classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')a.classList.remove('open')});
+renderLibya('');themeLabel();if(LANG==='en')setLang('en');else applyLang()})();
+
+function themeLabel(){const d=document.documentElement.dataset.theme==='dark',en=LANG==='en',b=document.getElementById('themeBtn');b.textContent=d?'☀':'☾';const t=en?(d?'Switch to light mode':'Switch to dark mode'):(d?'التبديل إلى الوضع المضيء':'التبديل إلى الوضع المظلم');b.setAttribute('aria-label',t);b.title=t}
+function toggleTheme(){const n=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=n;try{localStorage.setItem('albahith_theme',n)}catch{}themeLabel()}
+
+let statSel='';
+function kindKey(w){const t=(w.type||'').toLowerCase();if(t.includes('book'))return'books';if(/dissertation|thesis/.test(t))return'theses';if(/proceedings|conference/.test(t))return'conferences';if(/preprint|posted/.test(t))return'papers';return'articles'}
+function isOA(w){return !!(w.open_access?.is_oa||w.best_oa_location?.pdf_url)}
+function statOK(w){return !statSel||(statSel==='oa'?isOA(w):kindKey(w)===statSel)}
+function markStats(){document.querySelectorAll('.stat[data-k]').forEach(e=>{const on=e.dataset.k===statSel;e.classList.toggle('on',on);e.setAttribute('aria-pressed',on);e.classList.toggle('zero',e.querySelector('strong').textContent==='0')})}
+function pickStat(k){const e=document.querySelector('.stat[data-k="'+k+'"]');if(!allWorks.length){message('الإحصاءات','ابدأ بالبحث أولًا ثم اضغط أي بطاقة لعرض هذا النوع فقط.');return}if(e.querySelector('strong').textContent==='0'&&statSel!==k)return;statSel=statSel===k?'':k;document.getElementById('type').value='';document.querySelectorAll('.kind-filter').forEach(x=>x.checked=false);applyFilters();document.getElementById('results').scrollIntoView({behavior:'smooth'})}
+function renderPageNums(pages){const e=document.getElementById('pageNums');if(!e)return;if(pages<2){e.innerHTML='';return}const L=[...new Set([1,pages,currentPage-1,currentPage,currentPage+1])].filter(x=>x>=1&&x<=pages).sort((a,b)=>a-b);let h='',p=0;for(const n of L){if(p&&n-p>1)h+='<span class="pg-dots">…</span>';h+='<button type="button" class="pg-num'+(n===currentPage?' on" aria-current="page':'')+'" onclick="goPage('+n+')">'+n+'</button>';p=n}e.innerHTML=h}
+function goPage(n){currentPage=n;renderPage();document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'})}
+(function(){[['statBooks','books'],['statArticles','articles'],['statPapers','papers'],['statTheses','theses'],['statConferences','conferences'],['statOA','oa']].forEach(([id,k])=>{const el=document.getElementById(id).parentElement;el.dataset.k=k;el.setAttribute('role','button');el.tabIndex=0;el.onclick=()=>pickStat(k);el.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();pickStat(k)}}});markStats();
+const up=document.querySelector('.fl.up'),dn=document.querySelector('.fl.dn');function u(){const max=document.documentElement.scrollHeight-innerHeight,p=max>0?Math.min(100,Math.round(scrollY/max*100)):0;up.style.setProperty('--p',p);dn.style.setProperty('--p',100-p);const a=scrollY>200,b=p<97;up.style.opacity=a?1:0;up.style.pointerEvents=a?'auto':'none';dn.style.opacity=b?1:0;dn.style.pointerEvents=b?'auto':'none'}
+addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();
 </script>
-<div id="citationModal" class="citation-modal" role="dialog" aria-modal="true" aria-labelledby="citationTitle">
- <div class="citation-box">
-  <h2 id="citationTitle">أنظمة التوثيق والاقتباس</h2>
-  <p>اختر النمط الذي تطلبه المجلة أو المؤتمر. النص الناتج مسودة مبنية على البيانات الظاهرة، ويجب استكمال البيانات الناقصة ومراجعة دليل الجهة الناشرة قبل الإرسال.</p>
-  <label for="citationStyle">نظام التوثيق</label>
-  <select id="citationStyle">
-   <option value="apa">APA 7 — الجمعية الأمريكية لعلم النفس</option><option value="mla">MLA 9 — جمعية اللغة الحديثة</option>
-   <option value="chicagoNB">Chicago 18 — الحواشي وقائمة المراجع</option><option value="chicagoAD">Chicago 18 — المؤلف والتاريخ</option>
-   <option value="ieee">IEEE — الترقيم الهندسي والتقني</option><option value="vancouver">Vancouver — الترقيم الطبي</option>
-   <option value="harvard">Harvard — المؤلف والتاريخ</option><option value="acs">ACS — الكيمياء</option><option value="bibtex">BibTeX — لإدارة المراجع</option>
-  </select>
-  <label for="citationOutput">مسودة التوثيق</label><textarea id="citationOutput" spellcheck="false"></textarea><div id="citationCopyStatus" class="copy-status" role="status" aria-live="polite"></div>
-  <div class="citation-controls"><button class="go" id="copyCitationBtn" type="button">نسخ الاقتباس</button><button id="downloadCitationBtn" type="button">تنزيل TXT</button><button type="button" onclick="closeCitation()">إغلاق</button></div>
- </div>
-</div>
 
 </body></html>
